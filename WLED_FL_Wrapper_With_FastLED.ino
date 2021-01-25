@@ -15,7 +15,6 @@ void setup() {
   strip.init(useRGBW, ledCount, skipFirstLed);
 
   strip.setMode(0, BUILTIN_MODE_COUNT + USERFX1_MODE_COUNT + USERFX2_MODE_2D_FIRE2012);
-
 }
 
 void loop() {

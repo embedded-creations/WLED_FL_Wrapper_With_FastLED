@@ -34,3 +34,5 @@
 #define USERFX1_CPP_H   "FL_Wrapper_UserFX1.cpp.h"
 #define USERFX2_H       "FL_Effects_UserFX2.h"
 #define USERFX2_CPP_H   "FL_Effects_UserFX2.cpp.h"
+
+#define CUSTOM_NPBWRAPPER_H "NpbWrapperFastLED.h"
