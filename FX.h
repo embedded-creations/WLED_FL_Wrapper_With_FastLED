@@ -385,7 +385,7 @@ class WS2812FX {
         if (WS2812FX::instance->_usedSegmentData + len > MAX_SEGMENT_DATA) return false; //not enough memory
 
         #ifndef __cpp_lib_is_nothrow_convertible
-          data = new byte[len]; // Wowki AVR Simulator doesn't handle (std::nothrow)
+          data = new byte[len]; // Wokwi AVR Simulator doesn't handle (std::nothrow)
         #else
           data = new (std::nothrow) byte[len];
         #endif
