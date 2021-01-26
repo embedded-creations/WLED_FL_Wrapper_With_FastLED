@@ -1,38 +1,18 @@
 #pragma once
 
-/*
- * Welcome! 
- * You can use the file "my_config.h" to make changes to the way WLED is compiled!
- * It is possible to enable and disable certain features as well as set defaults for some runtime changeable settings.
- * 
- * How to use:
- * PlatformIO: Just compile the unmodified code once! The file "my_config.h" will be generated automatically and now you can make your changes.
- * 
- * ArduinoIDE: Make a copy of this file and name it "my_config.h". Go to wled.h and uncomment "#define WLED_USE_MY_CONFIG" in the top of the file.
- * 
- * DO NOT make changes to the "my_config_sample.h" file directly! Your changes will not be applied.
- */
+// The simulator works with FastLED, so use this custom wrapper which swaps out NeoPixelBus for FastLED
+#define CUSTOM_NPBWRAPPER_H "NpbWrapperFastLED.h"
 
-// force the compiler to show a warning to confirm that this file is included
-//#warning **** my_config.h: Settings from this file are honored ****
+// There doesn't seem to be enough memory (or it takes too long to send out 1500 neopixels) with the simulator
+#define MAX_LEDS (512 + 1)
 
-/* Uncomment to use your WIFI settings as defaults
-  //WARNING: this will hardcode these as the default even after a factory reset
-#define CLIENT_SSID "Your_SSID"
-#define CLIENT_PASS "Your_Password"
-*/
+//#define LEDPIN 27   // This pin is used by the Atom Lite Matrix
+#define LEDPIN 3      // This pin is used by the simulator - is it the best pin?
 
-//#define MAX_LEDS 1500       //Maximum total LEDs. More than 1500 might create a low memory situation on ESP8266.
-
-//#define USERFX1_H       "../usermods/UserFX/UserFX1.h"
-//#define USERFX1_CPP_H   "../usermods/UserFX/UserFX1.cpp.h"
-
-#define BTNPIN 39
-#define LEDPIN 27
-
+// Include FL_Wrapper for FastLED compatible effects
 #define USERFX1_H       "FL_Wrapper_UserFX1.h"
 #define USERFX1_CPP_H   "FL_Wrapper_UserFX1.cpp.h"
+
+// Include User-defined effects in UserFX2 - edit this file or replace it to add new effects
 #define USERFX2_H       "FL_Effects_UserFX2.h"
 #define USERFX2_CPP_H   "FL_Effects_UserFX2.cpp.h"
-
-#define CUSTOM_NPBWRAPPER_H "NpbWrapperFastLED.h"

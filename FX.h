@@ -378,7 +378,13 @@ class WS2812FX {
         if (data && _dataLen == len) return true; //already allocated
         deallocateData();
         if (WS2812FX::instance->_usedSegmentData + len > MAX_SEGMENT_DATA) return false; //not enough memory
-        data = new (std::nothrow) byte[len];
+
+        #ifndef __cpp_lib_is_nothrow_convertible
+          data = new byte[len]; // Wowki AVR Simulator doesn't handle (std::nothrow)
+        #else
+          data = new (std::nothrow) byte[len];
+        #endif
+
         if (!data) return false; //allocation failed
         WS2812FX::instance->_usedSegmentData += len;
         _dataLen = len;
@@ -704,4 +710,3 @@ const char JSON_palette_names[] PROGMEM = R"=====([
 ])=====";
 
 #endif
-         

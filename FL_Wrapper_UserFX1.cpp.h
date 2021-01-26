@@ -17,9 +17,7 @@ const xyPair xyTableDotstarDisk[] = {{16,8},{16,9},{16,10},{15,11},{15,12},{14,1
 #if 1
 segmentmap _segmentmaps[MAX_NUM_SEGMENTS] = {
   // matrixWidth, matrixHeight, mapPtr, mapsize
-  { 16, 16, xyTable16x16Serpentine, sizeof(xyTable16x16Serpentine)/sizeof(xyPair)},
-  { 17, 17, xyTableDotstarDisk, sizeof(xyTableDotstarDisk)/sizeof(xyPair)},
-  { 16, 16, xyTable16x16Progressive, sizeof(xyTable16x16Progressive)/sizeof(xyPair)}
+  { 16, 16, xyTable16x16Progressive, sizeof(xyTable16x16Serpentine)/sizeof(xyPair)}
 };
 #else
 segmentmap _segmentmaps[MAX_NUM_SEGMENTS] = {
