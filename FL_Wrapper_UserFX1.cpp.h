@@ -120,7 +120,7 @@ void * flStructPtr;
 
 #define FL_EVERY_N(NAME,N) \
   if(!SEGENV.call) {((fl_Struct*)flStructPtr)->NAME.reset(); ((fl_Struct*)flStructPtr)->NAME.setPeriod(N); } \
-  if(((fl_Struct*)flStructPtr)->NAME)
+  if(((fl_Struct*)flStructPtr)->NAME.ready())
 
 #define FL_EVERY_N_MILLIS   FL_EVERY_N
 #define FL_EVERY_N_SECONDS  FL_EVERY_N
