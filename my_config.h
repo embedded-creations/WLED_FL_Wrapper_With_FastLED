@@ -3,6 +3,8 @@
 // The simulator works with FastLED, so use this custom wrapper which swaps out NeoPixelBus for FastLED
 #define CUSTOM_NPBWRAPPER_H "NpbWrapperFastLED.h"
 
+#define FX_REMOVE_BUILTIN_PATTERNS
+
 // There doesn't seem to be enough memory (or it takes too long to send out 1500 neopixels) with the simulator
 #define MAX_LEDS (512 + 1)
 
