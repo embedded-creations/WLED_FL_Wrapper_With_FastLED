@@ -22,8 +22,8 @@ uint16_t WS2812FX::mode_2DSwirl(void) {
   uint8_t  i = beatsin8( 27, kBorderWidth, kMatrixHeight-kBorderWidth);
   uint8_t  j = beatsin8( 41, kBorderWidth, kMatrixWidth-kBorderWidth);
   // Also calculate some reflections
-  uint8_t ni = (kMatrixWidth-1)-i;
-  uint8_t nj = (kMatrixWidth-1)-j;
+  uint16_t ni = (kMatrixWidth-1)-i;
+  uint16_t nj = (kMatrixWidth-1)-j;
   
   // The color of each point shifts over time, each at a different speed.
   uint16_t ms = millis();  
@@ -120,6 +120,7 @@ uint16_t WS2812FX::mode_blinktriggers(void) {
 
   // This runs once when the effect starts, similar to setup() in a FastLED sketch
   FL_SETUP() {
+    Serial.println("FL_SETUP");
     FL_STATICVAR(counterTriggered) = 0;
 
     // make a macro?  These calls replace static CEveryNMilliseconds triggerTimer(timerB);
@@ -129,15 +130,18 @@ uint16_t WS2812FX::mode_blinktriggers(void) {
 
   FL_EVERY_N_MILLIS(flMillisTrigger1, timerA) {
     // do Event A stuff
+    Serial.println("flMillisTrigger1");
     fill_solid(leds, NUM_LEDS, CHSV(random8(),255,128));
     FL_STATICVAR(counterTriggered) = 1;  // Set to True
     FL_STATICVAR(triggerTimer).reset();  // Start trigger timer
   }
 
   if (FL_STATICVAR(counterTriggered) == 1) {  // Will only be True if Event A has started
+    Serial.println("counterTriggered");
     if (FL_STATICVAR(triggerTimer)) {  // Check if triggerTimer time reached
+      Serial.println("triggerTimer");
       // do Event B stuff
-      for (uint8_t i=0; i<NUM_LEDS/2; i++){
+      for (uint16_t i=0; i<NUM_LEDS/2; i++){
         leds[random16(NUM_LEDS)] = CRGB::Red;
       }
       FL_STATICVAR(counterTriggered) = 0;  // Set back to False
